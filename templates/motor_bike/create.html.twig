@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<div class="bg-secondary">
+<a href="{{ path('app_motor_bike')}}" class="btn btn-dark">back</a>
+{{form_start(form)}}
+
+  {{form_widget(form)}}
+    <button class="btn btn-danger" type="submit">Ajouter la moto</button>
+
+{{form_end(form)}}
+</div>
+{% endblock %}

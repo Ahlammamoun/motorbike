@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<h1>{{ motorbike.name}}</h1>
+<a href="{{ path('app_motor_bike')}}" class="btn btn-dark">back</a>
+
+
+<table class="table bg-secondary">
+    <thead>
+    <tr>
+      <th >#ID</th>
+      <th >Model</th>
+      <th >Année</th>   
+      <th >Marque</th>
+      <th >Action</th>
+     <tr>
+    </thead>
+ <tbody>
+        </tr>
+      <th >{{ motorbike.id }}</th> 
+      <td >{{ motorbike.name }}</td>
+      <td >{{ motorbike.releaseDate|date("Y") }}</td>
+      <td >{{ motorbike.brand.name }}</td>   
+     <td>
+  
+
+
+    </td>
+
+
+{% endblock %}
