@@ -3,12 +3,11 @@
 namespace App\Form;
 
 use App\Entity\MotorBike;
-use App\Entity\Brand;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Brand;
 
 class MotorBikeType extends AbstractType
 {
@@ -16,12 +15,7 @@ class MotorBikeType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('releaseDate', DateType::class,
-            [
-                'input' => 'datetime_immutable',
-                'widget' => 'choice',
-                'years' => range(date('Y')-20, date('Y'))
-            ])
+            ->add('releaseDate')
             ->add('color')
             ->add('picture')
             ->add('brand', EntityType::class,

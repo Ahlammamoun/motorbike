@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+<title>New MotorBike</title>
+{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Create new MotorBike</h1>
+    <button class=" bg-dark text-center w-100">
+     <a href="{{ path('app_motor_bike_index') }}" class="text-danger">back to list</a>
+  </button>
+
+    {{ include('motor_bike/_form.html.twig') }}
+
+   
+{% endblock %}

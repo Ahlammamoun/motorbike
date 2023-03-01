@@ -2,91 +2,89 @@
 
 namespace App\Controller;
 
-
-use App\Repository\MotorBikeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 use App\Entity\MotorBike;
 use App\Form\MotorBikeType;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\MotorBikeRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-
-
+/**
+ * @Route("/motor/bike")
+ */
 class MotorBikeController extends AbstractController
 {
     /**
-     * @Route("/", name="app_motor_bike")
+     * @Route("/", name="app_motor_bike_index", methods={"GET"})
      */
-    public function index(MotorBikeRepository $MotorBikeRepo): Response
+    public function index(MotorBikeRepository $motorBikeRepository): Response
     {
-
-        $motorBikes = $MotorBikeRepo->findAll();
-        //dd($cars);
         return $this->render('motor_bike/index.html.twig', [
-            'motorBikes' => $motorBikes ,
+            'motor_bikes' => $motorBikeRepository->findAll(),
         ]);
-
-    }
-
-  /**
-     * @Route("/motorbike/{id}", name="app_motorbike", requirements={"id": "\d+"})
-     */
-
-    
-    public function show(MotorBikeRepository $MotorBikeRepo, int $id ): Response
-    {
-        $motorbike = $MotorBikeRepo->find($id);
-  
-     
-       
-        //$lastReview = $reviewRepository->findBy(['Movie' => $Movie], ['id' => 'DESC'], 1);
-       // dd($lastReviews);
-
-        return $this->render('motor_bike/show.html.twig', [
-          
-            'motorbike' => $motorbike ,
-
-            
-        ]);
-            
     }
 
     /**
-     * @Route("/motorbike", name="app_motor_bike_create", methods={"GET","POST"})
+     * @Route("/new", name="app_motor_bike_new", methods={"GET", "POST"})
      */
-    public function create(Request $request, EntityManagerInterface $doctrine): Response
+    public function new(Request $request, MotorBikeRepository $motorBikeRepository): Response
     {
         $motorBike = new MotorBike();
-        $formulaire = $this->createForm(MotorBikeType::class, $motorBike);
+        $form = $this->createForm(MotorBikeType::class, $motorBike);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $motorBikeRepository->add($motorBike, true);
 
-        $formulaire->handleRequest($request);
-        if ($formulaire->isSubmitted() && $formulaire->isValid()){
-
-            $doctrine->persist($motorBike);
-            $doctrine->flush();
-            //dd($motorBike);
-
-            return $this->redirectToRoute("app_motor_bike");
-
-
-
+            return $this->redirectToRoute('app_motor_bike_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        //dd($cars);
-        return $this->renderForm('motor_bike/create.html.twig', [
-            'form' => $formulaire ,
+        return $this->renderForm('motor_bike/new.html.twig', [
+            'motor_bike' => $motorBike,
+            'form' => $form,
         ]);
     }
 
+    /**
+     * @Route("/{id}", name="app_motor_bike_show", methods={"GET"})
+     */
+    public function show(MotorBike $motorBike): Response
+    {
+        return $this->render('motor_bike/show.html.twig', [
+            'motor_bike' => $motorBike,
+        ]);
+    }
 
+    /**
+     * @Route("/{id}/edit", name="app_motor_bike_edit", methods={"GET", "POST"})
+     */
+    public function edit(Request $request, MotorBike $motorBike, MotorBikeRepository $motorBikeRepository): Response
+    {
+        $form = $this->createForm(MotorBikeType::class, $motorBike);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $motorBikeRepository->add($motorBike, true);
 
+            return $this->redirectToRoute('app_motor_bike_index', [], Response::HTTP_SEE_OTHER);
+        }
 
+        return $this->renderForm('motor_bike/edit.html.twig', [
+            'motor_bike' => $motorBike,
+            'form' => $form,
+        ]);
+    }
 
+    /**
+     * @Route("/{id}", name="app_motor_bike_delete", methods={"POST"})
+     */
+    public function delete(Request $request, MotorBike $motorBike, MotorBikeRepository $motorBikeRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$motorBike->getId(), $request->request->get('_token'))) {
+            $motorBikeRepository->remove($motorBike, true);
+        }
 
-
-
+        return $this->redirectToRoute('app_motor_bike_index', [], Response::HTTP_SEE_OTHER);
+    }
 }

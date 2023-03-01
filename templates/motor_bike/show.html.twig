@@ -1,34 +1,45 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+MotorBike 
+{% endblock %}
+
 {% block body %}
+    <h1 class="text-center text-dark ">MotorBike</h1>
+    <button class=" bg-dark  w-100">
+    <a href="{{ path('app_motor_bike_index') }}" class="text-danger">back to list</a>
+    </button>
+
+    <table class="table text-light">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ motor_bike.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ motor_bike.name }}</td>
+            </tr>
+            <tr>
+                <th>ReleaseDate</th>
+                <td>{{ motor_bike.releaseDate ? motor_bike.releaseDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{ motor_bike.color }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td>{{ motor_bike.picture }}</td>
+            </tr>
+        </tbody>
+    </table>
 
 
-<h1>{{ motorbike.name}}</h1>
-<a href="{{ path('app_motor_bike')}}" class="btn btn-dark w-100">back</a>
+  <button class=" bg-secondary text-center w-100">
+   <a href="{{ path('app_motor_bike_edit', {'id': motor_bike.id}) }}" class="text-light">edit</a>
+    </button>
+    
 
-
-<table class="table bg-dark text-white">
-    <thead>
-    <tr>
-      <th >#ID</th>
-      <th >Model</th>
-      <th >Année</th>   
-      <th> Picture</th>
-      <th >Marque</th>
-     <tr>
-    </thead>
- <tbody>
-        </tr>
-      <th >{{ motorbike.id }}</th> 
-      <td >{{ motorbike.name }}</td>
-      <td >{{ motorbike.releaseDate|date("Y") }}</td>
-      <td class="col-4 movie__poster w-25" style="background-image: url({{ motorbike.picture }});" ></td> 
-      <td >{{ motorbike.brand.name }}</td>   
-     <tr>
-  
-
-
-    </tbody>
-
-
+    {{ include('motor_bike/_delete_form.html.twig') }}
 {% endblock %}
