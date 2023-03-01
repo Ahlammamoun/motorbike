@@ -23,6 +23,7 @@ class MotorBikeType extends AbstractType
                 'years' => range(date('Y')-20, date('Y'))
             ])
             ->add('color')
+            ->add('picture')
             ->add('brand', EntityType::class,
             [
                 'class' => Brand::class,

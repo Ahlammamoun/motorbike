@@ -53,25 +53,6 @@ class MotorBikeController extends AbstractController
             
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * @Route("/motorbike", name="app_motor_bike_create", methods={"GET","POST"})
      */
@@ -99,8 +80,6 @@ class MotorBikeController extends AbstractController
             'form' => $formulaire ,
         ]);
     }
-
-
 
 
 

@@ -8,17 +8,18 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<h1>Liste des motos</h1>
-<a href="{{ path('app_motor_bike_create')}}" class="btn btn-warning">Ajouter une moto</a>
+<h1 class="text-center">Liste des motos</h1>
+<a href="{{ path('app_motor_bike_create')}}" class="btn btn-secondary w-100">Ajouter une moto</a>
 
 
-<table class="table bg-secondary">
+<table class="table bg-dark text-white">
     <thead>
     <tr>
       <th >#ID</th>
       <th >Model</th>
       <th >Année</th>   
       <th >Marque</th>
+      <th >Picture</th>
       <th >Action</th>
      <tr>
     </thead>
@@ -29,9 +30,10 @@
       <th >{{ motorBike.id }}</th> 
       <td >{{ motorBike.name }}</td>
       <td >{{ motorBike.releaseDate|date("Y") }}</td>
-      <td >{{ motorBike.brand.name }}</td>   
+      <td >{{ motorBike.brand.name }}</td>  
+  <td class="col-4 movie__poster w-25"  style="background-image: url({{ motorBike.picture }}); " ></td> 
      <td>
-     <a href="{{ path('app_motorbike',  {'id': motorBike.id}) }}" class="btn btn-warning">voir la moto</a>
+     <a href="{{ path('app_motorbike',  {'id': motorBike.id}) }}" class="btn btn-secondary">voir la moto</a>
  
 
 

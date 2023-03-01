@@ -42,6 +42,11 @@ class MotorBike
      */
     private $brand;
 
+    /**
+     * @ORM\Column(type="string", length=1500)
+     */
+    private $picture;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +96,18 @@ class MotorBike
     public function setBrand(?Brand $brand): self
     {
         $this->brand = $brand;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

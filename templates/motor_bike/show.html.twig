@@ -4,17 +4,17 @@
 
 
 <h1>{{ motorbike.name}}</h1>
-<a href="{{ path('app_motor_bike')}}" class="btn btn-dark">back</a>
+<a href="{{ path('app_motor_bike')}}" class="btn btn-dark w-100">back</a>
 
 
-<table class="table bg-secondary">
+<table class="table bg-dark text-white">
     <thead>
     <tr>
       <th >#ID</th>
       <th >Model</th>
       <th >Année</th>   
+      <th> Picture</th>
       <th >Marque</th>
-      <th >Action</th>
      <tr>
     </thead>
  <tbody>
@@ -22,12 +22,13 @@
       <th >{{ motorbike.id }}</th> 
       <td >{{ motorbike.name }}</td>
       <td >{{ motorbike.releaseDate|date("Y") }}</td>
+      <td class="col-4 movie__poster w-25" style="background-image: url({{ motorbike.picture }});" ></td> 
       <td >{{ motorbike.brand.name }}</td>   
-     <td>
+     <tr>
   
 
 
-    </td>
+    </tbody>
 
 
 {% endblock %}

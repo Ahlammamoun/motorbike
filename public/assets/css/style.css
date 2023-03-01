@@ -1,0 +1,23 @@
+td.col-4.movie__poster.w-25 {
+
+background-repeat: no-repeat;
+width: 400px;
+height: 400px;
+
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    background-color: black;
+}
+form {
+    background-color: black;
+}
+
+h1.text-center {
+    font-family: 'rockwell';
+    font-weight: bold;
+    
+
+}
