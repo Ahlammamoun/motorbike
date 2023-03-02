@@ -34,12 +34,8 @@ MotorBike
             </tr>
         </tbody>
     </table>
-
-
   <button class=" bg-secondary text-center w-100">
    <a href="{{ path('app_motor_bike_edit', {'id': motor_bike.id}) }}" class="text-light">edit</a>
     </button>
-    
-
     {{ include('motor_bike/_delete_form.html.twig') }}
 {% endblock %}
