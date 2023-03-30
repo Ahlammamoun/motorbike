@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+{% endblock %}
+
+
+{% block body %}
+    <h1 class="text-center">Edit MotorBike</h1>
+
+   <button class=" bg-dark  w-100">
+    <a href="{{ path('app_back_motor_bike_index') }}" class="text-danger">back to list</a>
+    </button>
+
+    {{ include('back/motor_bike/_form.html.twig', {'button_label': 'Update'}) }}
+
+    {{ include('back/motor_bike/_delete_form.html.twig') }}
+{% endblock %}

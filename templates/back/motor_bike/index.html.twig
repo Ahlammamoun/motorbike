@@ -7,6 +7,9 @@ MotorBike index
 
 {% block body %}
     <h1 class="text-center">MotorBike</h1>
+    <button class=" bg-dark bg-gradient text-center w-100">
+  <a href="{{ path('app_motor_bike_new') }}" class="text-danger">Create new</a>
+  </button>
 
     <table class="table text-light">
         <thead>
@@ -16,7 +19,7 @@ MotorBike index
                 <th>ReleaseDate</th>
                 <th>Color</th>
                 <th>Picture</th>
-                <th>Action</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,13 +30,19 @@ MotorBike index
                 <td>{{ motor_bike.releaseDate ? motor_bike.releaseDate|date('Y-m-d') : '' }}</td>
                 <td>{{ motor_bike.color }}</td>
               <td class="col-4 movie__poster w-25" style="background-image: url({{ motor_bike.picture }});" ></td>
-              <td><a href="{{ path('app_motor_bike_show', {'id': motor_bike.id}) }}" class="text-light bg-danger">show</a></td>
+                <td>
+                    <a href="{{ path('app_back_motor_bike_show', {'id': motor_bike.id}) }}" class="text-light bg-danger">show</a>
+                    <a href="{{ path('app_back_motor_bike_edit', {'id': motor_bike.id}) }}" class="text-light bg-danger" >edit</a>
+                </td>
             </tr>
         {% else %}
-          
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
         {% endfor %}
         </tbody>
     </table>
 
   
 {% endblock %}
+

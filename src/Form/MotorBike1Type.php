@@ -9,22 +9,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Brand;
 
-class MotorBikeType extends AbstractType
+class MotorBike1Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('releaseDate')
-            ->add('color')
-            ->add('picture')
-            ->add('brand', EntityType::class,
-            [
-                'class' => Brand::class,
-                'choice_label' => 'name',
-                //'multiple' => true,
-            ])
-        ;
+        ->add('name')
+        ->add('releaseDate')
+        ->add('color')
+        ->add('price')
+        ->add('town')
+        ->add('country')
+        ->add('picture')
+        ->add('brand', EntityType::class,
+        [
+            'class' => Brand::class,
+            'choice_label' => 'name',
+            //'multiple' => true,
+        ])
+    ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

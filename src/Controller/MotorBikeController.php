@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("back/motor/bike")
+ * @Route("/motor/bike")
  */
 class MotorBikeController extends AbstractController
 {
@@ -56,25 +56,7 @@ class MotorBikeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="app_motor_bike_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, MotorBike $motorBike, MotorBikeRepository $motorBikeRepository): Response
-    {
-        $form = $this->createForm(MotorBikeType::class, $motorBike);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $motorBikeRepository->add($motorBike, true);
-
-            return $this->redirectToRoute('app_motor_bike_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('motor_bike/edit.html.twig', [
-            'motor_bike' => $motorBike,
-            'form' => $form,
-        ]);
-    }
+    
 
     /**
      * @Route("/{id}", name="app_motor_bike_delete", methods={"POST"})
