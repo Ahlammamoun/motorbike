@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/motor/bike")
+ * @Route("/")
  */
 class MotorBikeController extends AbstractController
 {
@@ -25,26 +25,6 @@ class MotorBikeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="app_motor_bike_new", methods={"GET", "POST"})
-     */
-    public function new(Request $request, MotorBikeRepository $motorBikeRepository): Response
-    {
-        $motorBike = new MotorBike();
-        $form = $this->createForm(MotorBikeType::class, $motorBike);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $motorBikeRepository->add($motorBike, true);
-
-            return $this->redirectToRoute('app_motor_bike_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('motor_bike/new.html.twig', [
-            'motor_bike' => $motorBike,
-            'form' => $form,
-        ]);
-    }
 
     /**
      * @Route("/{id}", name="app_motor_bike_show", methods={"GET"})
@@ -56,17 +36,5 @@ class MotorBikeController extends AbstractController
         ]);
     }
 
-    
 
-    /**
-     * @Route("/{id}", name="app_motor_bike_delete", methods={"POST"})
-     */
-    public function delete(Request $request, MotorBike $motorBike, MotorBikeRepository $motorBikeRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$motorBike->getId(), $request->request->get('_token'))) {
-            $motorBikeRepository->remove($motorBike, true);
-        }
-
-        return $this->redirectToRoute('app_motor_bike_index', [], Response::HTTP_SEE_OTHER);
-    }
 }

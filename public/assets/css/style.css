@@ -15,7 +15,12 @@ form {
     background-color: black;
     color: white;
 }
-
+button.btn.text-dark {
+    background-color: #cf7b27 ;
+    border-radius: 10% / 50%;
+    border-color: black ;
+   
+}
 h1.text-center {
     font-family: 'rockwell';
     font-weight: bold;
@@ -24,3 +29,12 @@ h1.text-center {
 button.bg-dark.text-center.w-100 {
     background-color: yellow;
 }
+.navbar 
+ {
+    background-color: #772f1a;
+    background-image: linear-gradient(315deg, #772f1a 0%, #cf7b27 74%);
+
+
+ }
+
+
