@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Brand{% endblock %}
+
+{% block body %}
+   <h1 class="text-center">Edit Brand</h1>
+
+ <button class=" bg-dark  w-100">
+    <a href="{{ path('app_back_brand_index') }}" class="text-danger">back to list</a>
+    </button>
+    <button class=" bg-dark  w-100">    
+    <a href="{{ path('app_back_motor_bike_home') }}" class="text-danger">back to general backoffice</a>
+    </button>
+    {{ include('back/brand/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+    {{ include('back/brand/_delete_form.html.twig') }}
+{% endblock %}

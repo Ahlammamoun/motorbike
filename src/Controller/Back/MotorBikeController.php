@@ -5,6 +5,7 @@ namespace App\Controller\Back;
 use App\Entity\MotorBike;
 use App\Form\MotorBike1Type;
 use App\Repository\MotorBikeRepository;
+use App\Repository\BrandRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +25,21 @@ class MotorBikeController extends AbstractController
             'motor_bikes' => $motorBikeRepository->findAll(),
         ]);
     }
+
+    /**
+     * @Route("/home", name="app_back_motor_bike_home", methods={"GET"})
+     */
+    public function home(MotorBikeRepository $motorBikeRepository, BrandRepository $brandRepo): Response
+    {
+
+        return $this->render('back/motor_bike/home.html.twig', [
+            'motor_bikes' => $motorBikeRepository->findAll(),
+            'brands' => $brandRepo->findAll(),
+        ]);
+    }
+
+
+
 
     /**
      * @Route("/new", name="app_back_motor_bike_new", methods={"GET", "POST"})
@@ -67,8 +83,14 @@ class MotorBikeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $motorBikeRepository->add($motorBike, true);
 
+            $this->addFlash(
+                'notice',
+                'votre modification à été prise en compte !',
+            );
+        
             return $this->redirectToRoute('app_back_motor_bike_index', [], Response::HTTP_SEE_OTHER);
-        }
+    
+        } 
 
         return $this->renderForm('back/motor_bike/edit.html.twig', [
             'motor_bike' => $motorBike,
@@ -83,6 +105,13 @@ class MotorBikeController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$motorBike->getId(), $request->request->get('_token'))) {
             $motorBikeRepository->remove($motorBike, true);
+        } else{
+
+            $this->addFlash(
+                'error',
+                'une erreur c\'est produite !',
+            );
+        
         }
 
         return $this->redirectToRoute('app_back_motor_bike_index', [], Response::HTTP_SEE_OTHER);

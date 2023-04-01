@@ -6,6 +6,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  {% if app.user %}
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
@@ -18,25 +19,25 @@
             <a class="nav-link dropdown-toggle text-light"  id="navbarDropdown" role="button"
                data-bs-toggle="dropdown">
                <img src="/assets/user.png" height="25" width="40" alt="user_picture" class="logo">
+               <span class="text-dark">{{ app.user.email }}</span>
                <i class="bi bi person-square">
             </a>
             <ul class="dropdown-menu">
                <li><a class="dropdown-item text-uppercase" href="#"></a></li>
-               <li><a class="dropdown-item" href="{{ path('app_back_motor_bike_index') }}">Backoffice</a></li>
+               <li><a class="dropdown-item" href="{{ path('app_back_motor_bike_home') }}">Backoffice</a></li>
                <li>
                   <hr class="dropdown-divider">
                </li>
-               <li><a class="dropdown-item" href="">Déconnexion</a></li>
+               <li><a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a></li>
             </ul>
     </ul>
   </div>
-
-   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  <button class="btn  text-dark" type="button">Connexion</button>
+{% else %}
+   <div class="col-md-4 offset-md-9">
+  <button class="btn text-dark" type="button"><a class="dropdown-item" href="{{ path('app_login')}}">Connexion</a></button>
 </div>
-
+{% endif %}
 </nav>
-
 
 <html>
     <head>
@@ -47,8 +48,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="/assets/css/style.css">
-        
-
+         {% block admin_nav %}{% endblock %}
+          {% block title_nav %}{% endblock %}
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -58,10 +59,11 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+     
+     
+  
         {% block body %}{% endblock %}
-    </body>
-
+    
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"crossorigin="anonymous"></script>
 </html>
 

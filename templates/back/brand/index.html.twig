@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title_nav %}<h1 class="text-center">Backoffice MotorBike gestion des Marques</h1>{% endblock %}
+
+{% block body %}
+
+
+
+ <button class=" bg-dark bg-gradient text-center w-100">
+  <a href="{{ path('app_back_brand_new') }}" class="text-danger">Create new</a>
+  </button>
+ <button class=" bg-dark  w-100">    
+    <a href="{{ path('app_back_motor_bike_home') }}" class="text-danger">back to general backoffice</a>
+    </button>
+
+
+    <table class="table text-light">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for brand in brands %}
+            <tr>
+                <td>{{ brand.id }}</td>
+                <td>{{ brand.name }}</td>
+                <td>
+                    <a href="{{ path('app_back_brand_show', {'id': brand.id}) }}" class="text-light bg-danger" >show</a>
+                    <a href="{{ path('app_back_brand_edit', {'id': brand.id}) }}" class="text-light bg-danger">edit</a>
+        
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title_nav %}<h1 class="text-center  ">Backoffice MotorBike gestion des motos</h1>{% endblock %}
+{% block title_nav %}<h1 class="text-center  ">Backoffice MotorBike</h1>{% endblock %}
 {% block admin_nav %}
+<ul class="nav mb-3 border border-dark">
+    <li class="nav-item">   
+        <a class="nav-link" href=" {{path ('app_back_motor_bike_index') }}">Motos</a>
+    </li>
+     <li class="nav-item">   
+        <a class="nav-link" href=" {{path ('app_back_brand_index') }}">Marques</a>
+    </li>
+
+</ul>
 
 {% endblock %}
-
 
 
 {% block body %}
@@ -23,17 +31,18 @@
             </div>
         {% endfor %}
 
-
-
- <button class=" bg-dark bg-gradient text-center w-100">
-  <a href="{{ path('app_back_motor_bike_new') }}" class="text-danger">Create new</a>
-  </button>
- <button class=" bg-dark  w-100">    
-    <a href="{{ path('app_back_motor_bike_home') }}" class="text-danger">back to general backoffice</a>
+<div class="d-flex flex-row">
+    <button class=" bg-dark  w-50">
+        <a href="{{ path('app_back_motor_bike_index') }}" class="text-danger">list</a>
     </button>
+    <button class=" bg-dark  w-50">
+        <a href="{{ path('app_back_brand_index') }}" class="text-danger">list</a>
+    </button>
+</div>
 
-
-    <table class="table text-light">
+<div class="d-flex flex-row">
+   
+    <table class="table text-light w-50">
         <thead>
             <tr>
                 <th>Id</th>
@@ -41,7 +50,6 @@
                 <th>ReleaseDate</th>
                 <th>Color</th>
                 <th>Picture</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -52,19 +60,44 @@
                 <td>{{ motor_bike.releaseDate ? motor_bike.releaseDate|date('Y-m-d') : '' }}</td>
                 <td>{{ motor_bike.color }}</td>
               <td class="col-4 movie__poster w-25" style="background-image: url({{ motor_bike.picture }});" ></td>
-                <td>
-                    <a href="{{ path('app_back_motor_bike_show', {'id': motor_bike.id}) }}" class="text-light bg-danger">show</a>
-                    <a href="{{ path('app_back_motor_bike_edit', {'id': motor_bike.id}) }}" class="text-light bg-danger" >edit</a>
-                </td>
+              
+                  
+            </tr>
+  
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+</div>
+
+
+
+
+
+<div class="d-flex flex-row">
+        <table class="table text-light w-50">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for brand in brands %}
+            <tr>
+                <td>{{ brand.id }}</td>
+                <td>{{ brand.name }}</td>
             </tr>
         {% else %}
             <tr>
                 <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
+
         </tbody>
     </table>
-
+</div>
   
 {% endblock %}
 

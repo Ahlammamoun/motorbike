@@ -21,10 +21,21 @@ button.btn.text-dark {
     border-color: black ;
    
 }
+button.btn.text-dark:hover {
+    background-color: black ;
+}
+a.dropdown-item {
+    background-color: #772f1a;
+    color: black;
+    font-weight: bold;
+}
+a.dropdown-item:hover {
+    background-color: #772f1a;
+    color: #cf7b27;
+}
 h1.text-center {
     font-family: 'rockwell';
     font-weight: bold;
-
 }
 button.bg-dark.text-center.w-100 {
     background-color: yellow;
@@ -33,8 +44,18 @@ button.bg-dark.text-center.w-100 {
  {
     background-color: #772f1a;
     background-image: linear-gradient(315deg, #772f1a 0%, #cf7b27 74%);
-
-
  }
 
+ul.dropdown-menu.show {
+    background-color: #cf7b27;
+}
+.nav {
 
+    background-color: #772f1a;
+    background-image:  linear-gradient(315deg, #772f1a 0%, #cf7b27 74%);
+}
+.nav-link{
+
+    font-weight: bold;
+    color: black;
+}
