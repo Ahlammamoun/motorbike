@@ -3,9 +3,18 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <h1>Gextion des User</h1>
 
-    <table class="table">
+
+ <button class=" bg-dark bg-gradient text-center w-100">
+  <a href="{{ path('app_back_user_new') }}" class="text-danger">Create new</a>
+  </button>
+ <button class=" bg-dark  w-100">    
+    <a href="{{ path('app_back_user_index') }}" class="text-danger">back to general backoffice</a>
+    </button>
+
+
+    <table class="table text-light">
         <thead>
             <tr>
                 <th>Id</th>
@@ -23,8 +32,8 @@
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.password }}</td>
                 <td>
-                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}" class="text-light bg-danger">show</a>
+                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}" class="text-light bg-danger">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +44,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_user_new') }}">Create new</a>
 {% endblock %}
